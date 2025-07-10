@@ -13,6 +13,8 @@ import base64
 from Scripts.load_data import load_all_data
 from Scripts.feature_engineering import generate_features
 
+
+
 # -------------------------------------------------------------
 # Paths
 # -------------------------------------------------------------
@@ -31,26 +33,85 @@ st.set_page_config(
 )
 
 # -------------------------------------------------------------
-# Add background image using base64
+# Add background image 
 # -------------------------------------------------------------
-def add_background(image_path):
-    with open(image_path, "rb") as image_file:
-        encoded = base64.b64encode(image_file.read()).decode()
-    page_bg_img = f"""
+def add_background_with_overlay(image_url):
+    page_bg_style = f"""
     <style>
     .stApp {{
-        background-image: url("data:image/jpg;base64,{encoded}");
+        background: url("{image_url}") no-repeat center center fixed;
         background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
+    }}
+    .stApp::before {{
+        content: "";
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Dark overlay with 50% transparency */
+        z-index: -1;
     }}
     </style>
     """
-    st.markdown(page_bg_img, unsafe_allow_html=True)
+    st.markdown(page_bg_style, unsafe_allow_html=True)
 
-if os.path.exists(BACKGROUND_PATH):
-    add_background(BACKGROUND_PATH)
+# Use raw GitHub background image
+github_raw_url = "https://raw.githubusercontent.com/Abi1176/PoductReorderPrediction/main/ProductReorderPredictionImage.png"
+add_background_with_overlay(github_raw_url)
+
+st.markdown("""
+<style>
+/* Sidebar styling */
+[data-testid="stSidebar"] {
+    background-color: #1f2e3d;
+    color: #ffffff;
+    border-right: 1px solid #2c3e50;
+}
+
+/* Button styling */
+.stButton > button {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+.stButton > button:hover {
+    background-color: #16a085;
+}
+
+/* Slider label styling */
+.css-1r6slb0 {
+    color: #ffffff !important;
+}
+
+/* Table header and text */
+thead tr th {
+    background-color: #1abc9c !important;
+    color: #ffffff !important;
+}
+tbody tr td {
+    background-color: #2c3e50 !important;
+    color: #ffffff !important;
+}
+
+/* Adjust Markdown heading colors */
+h1, h2, h3, h4, h5 {
+    color: #ffffff;
+}
+</style>
+""", unsafe_allow_html=True)
+st.markdown("""
+    <style>
+    .stMarkdown h1, .stMarkdown h4, .stMarkdown h2, .stMarkdown h3, .stMarkdown h5 {
+        color: #FFFFFF !important;
+    }
+    .stDataFrame th, .stDataFrame td {
+        color: #000000 !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 # -------------------------------------------------------------
 # Safety checks
@@ -120,9 +181,9 @@ aisle_name = subset['aisle'].values[0]
 user_name = subset['user_name'].values[0]
 
 st.markdown(f"""
-    <div style='background-color:#F9F9F9;padding:15px;border-radius:10px'>
-        <h4 style='color:#2E86C1;'>👤 User: {user_name} 📦 Product: {product_name}</h4>
-        <h4 style='color:#1B4F72;'>🛒 Aisle: {aisle_name}</h4>
+    <div style='padding:10px;border-radius:8px'>
+        <h4  style='color:#154360;'>👤 User: {user_name} 📦 Product: {product_name}</h4>
+        <h4  style='color:#154360;'>🛒 Aisle: {aisle_name}</h4>
     </div>
     """, unsafe_allow_html=True)
 
@@ -130,7 +191,7 @@ st.markdown(f"""
 # Top 5 reordered products
 # -------------------------------------------------------------
 st.markdown("""
-    <div style='background-color:#EAF2F8;padding:10px;border-radius:8px'>
+    <div style='padding:10px;border-radius:8px'>
         <h4 style='color:#154360;'> Top 5 Reordered Products by User</h4>
     </div>
     """, unsafe_allow_html=True)
