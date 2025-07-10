@@ -103,18 +103,17 @@ Metric: Accuracy
 EarlyStopping: Applied for optimal generalization
 
 ## 7. Streamlit App Features
-📦 Select User and Product
+1. Select User and Product
 
-🛒 View Top 5 reordered products
+2. View Top 5 reordered products
 
-📊 Display auto-filled features
+3. Display auto-filled features
 
-🔮 Predict Reorder Probability
+4. Predict Reorder Probability
 
-🎚️ Adjustable Threshold slider
+5. Adjustable Threshold slider
 
-📈 Visualize Prediction Confidence
-
+6. Visualize Prediction Confidence
 
 ## 8. Key Results
 Prediction model outputs reorder probabilities dynamically.
