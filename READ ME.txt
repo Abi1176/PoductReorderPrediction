@@ -1,0 +1,135 @@
+## Product Reorder Prediction
+
+A Streamlit-based web application that predicts whether a customer will reorder a product, using historical Instacart data and a deep learning model.
+
+## Project Structure
+ProductReorderPrediction/
+│
+├── app.py # Streamlit app
+├── train.py # Model training script
+├── requirements.txt
+│
+├── models/
+│ └── product_reorder_model.h5 # Trained model
+│ └── scaler.save # Feature scaler
+│
+├── assets/
+│ └── grocery_background.jpg # Background image
+│
+├── scripts/
+│ ├── load_data.py # Load datasets
+│ └── feature_engineering.py # Feature generation
+│
+└── data/
+├── aisles.csv
+├── departments.csv
+├── orders.csv
+├── products.csv
+├── order_products__train.csv
+└── order_products__prior.csv
+
+## Model Overview
+
+- **Algorithm**: Deep Neural Network
+- **Libraries**: Keras, TensorFlow, Pandas, Scikit-learn
+- **Features**:
+  - User-product reorder history
+  - Product popularity
+  - User reorder habits
+
+---
+
+## Features in Streamlit App
+
+- Professional layout with custom background image
+- User and product selection
+- Auto-filled feature table
+- Prediction confidence with dynamic threshold
+- Top 5 most reordered products
+- Probability visualizations
+
+---
+## 1. Project Overview
+Objective: Predict whether a customer will reorder a specific product based on historical order patterns using Machine Learning.
+
+Dataset: Instacart Market Basket Analysis dataset, contains 3+ million grocery orders.
+
+## 2. Problem Statement
+Many users reorder the same products regularly.
+
+The goal is to identify such patterns and predict future reorders to improve customer experience and inventory planning.
+
+## 3. Tools & Technologies Used
+##Category	Tools/Tech
+Language	Python
+Libraries	Pandas, NumPy, TensorFlow/Keras, Seaborn, Matplotlib
+ML Model	Deep Neural Network (Keras)
+Web App	Streamlit
+Deployment	Localhost (Streamlit Interface)
+IDE	VS Code / Jupyter Notebooks
+
+## 4. Dataset Details
+##File	Description
+orders.csv	Contains user orders
+products.csv	Product details
+order_products__prior.csv	Historical orders
+order_products__train.csv	Training labels
+aisles.csv, departments.csv	Product hierarchy
+
+## 5. Key Feature Engineering
+User Behavior:
+
+user_total_orders, avg_days_between_orders, reorder_ratio
+
+## Product Trends:
+
+times_purchased, times_reordered
+
+User-Product Interactions:
+
+up_order_count, up_reorder_count
+
+## 6. Model Details
+Architecture:
+
+3-layer Deep Neural Network with Dropout
+
+Loss Function: Binary Crossentropy
+
+Optimizer: Adam
+
+Metric: Accuracy
+
+EarlyStopping: Applied for optimal generalization
+
+## 7. Streamlit App Features
+📦 Select User and Product
+
+🛒 View Top 5 reordered products
+
+📊 Display auto-filled features
+
+🔮 Predict Reorder Probability
+
+🎚️ Adjustable Threshold slider
+
+📈 Visualize Prediction Confidence
+
+
+## 8. Key Results
+Prediction model outputs reorder probabilities dynamically.
+
+Reorder classification based on threshold selected by the user.
+
+Clean UI for business and customer-facing dashboards.
+
+## 9. Learnings & Challenges
+Real-world data preprocessing and handling nulls.
+
+Feature engineering to extract valuable signals.
+
+Model tuning and overfitting control using validation & dropout.
+
+Deploying ML models into a professional-looking web application.
+
+
