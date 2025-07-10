@@ -13,9 +13,6 @@ ProductReorderPrediction/
 │ └── product_reorder_model.h5 # Trained model
 │ └── scaler.save # Feature scaler
 │
-├── assets/
-│ └── grocery_background.jpg # Background image
-│
 ├── scripts/
 │ ├── load_data.py # Load datasets
 │ └── feature_engineering.py # Feature generation
